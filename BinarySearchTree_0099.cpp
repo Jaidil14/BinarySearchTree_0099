@@ -20,11 +20,11 @@ class BinaryTree {
 public:
         Node* ROOT;
 
-        BinaryTree() {
+    BinaryTree() {
             ROOT = NULL; // Initializing ROOT to NULL;
-        }
+    }
 
-        void insert(string element) { // Insert a node in the binary search tree
+    void insert(string element) { // Insert a node in the binary search tree
             Node* newNode = new Node(element, NULL, NULL); // Allocate memory for the new node
             newNode->info = element; // Assign value to the data field of the new node
             newNode->leftchild = NULL; // Make the left child of the new node point to NULL
@@ -45,9 +45,9 @@ public:
 		    else if (element > parent->info) { // If the value in the data field of the new node is greater than that of the parent
 			    parent->rightchild = newNode; // Make the right child of the parent point to the new node
 		    }
-	    }
+	}
 
-        void search(string element, Node*& parent, Node*& currentNode) {
+    void search(string element, Node*& parent, Node*& currentNode) {
 		// This function searches the currentNode of the specified Node as well as the current Node of its parent
 		currentNode = ROOT;
 		parent = NULL;
@@ -60,9 +60,43 @@ public:
 				currentNode = currentNode->rightchild;
 			}
 		    }
-	    }
+	}
 
-        
+    void inorder(Node* ptr) {
+		if (ROOT == NULL) {
+			cout << "Tree is empty" << endl;
+			return;
+		}
+		if (ptr != NULL) {
+			inorder(ptr->leftchild);
+			cout << ptr->info << " ";
+			inorder(ptr->rightchild);
+		}
+	}
 
-        
+    void preorder(Node* ptr) {
+		if (ROOT == NULL) {
+			cout << "Tree is empty" << endl;
+			return;
+		}
+		if (ptr != NULL) {
+			cout << ptr->info << " ";
+			preorder(ptr->leftchild);
+			preorder(ptr->rightchild);
+		}
+	}
+
+	void postorder(Node* ptr) {
+		// Performs the postorder traversal of the tree
+		if (ROOT == NULL) {
+			cout << "Tree is empty" << endl;
+			return;
+		}
+		if (ptr != NULL) {
+			postorder(ptr->leftchild);
+			postorder(ptr->rightchild);
+			cout << ptr->info << " ";
+		}
+	}
 };
+
